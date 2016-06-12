@@ -1,0 +1,180 @@
+
+# 底层的stobj支撑起 url层。对外提供dir等方式了。
+
+# 然后是底层的stobj，执行实际的fs操作，比如说listdir等操作，获取到真正的文件内容。负责metadata的操作。
+
+# 然后是md5obj了，实现真正的数据操作。
+#
+# 虽然是多层，但是并没有发生同层次的交互，即底层次即可直接代表高层层次的逻辑了。
+#
+# 现在为了维持句柄，改如何是好？传递同个句柄？还是多个层次的句柄，但是都保持同样的资源了。让每个层次，处理不同层次的对象了。是的。
+#
+# 每个层次，都有该层次的操作了。其实每个操作说处理的内容非常的少了。是的。每个层次，通过继承的方式，获取改成的相关信息。以及封装和该层的操作。比如说在url层，疯转网络信息，以及url的处理函数。在stpath，则执行相关的os。listdir。或者os。eixsts等操作。在meta层，则执行相关的dict操作。和key，和lock相关的内容了。是的。
+#
+# 完成这样的设计，就不难了，是的。分层次的处理，是最好的。那么分层，则是因为每层的环境是不同的。比如说url层，则是对于url的处理了。而stobj层，则是对于文件系统的处理了。而metadata，则是在内存层次的处理了。这个就是分层思想的重要性了。
+#
+# 不要一上来就是各种的抽象了。
+
+对于缺乏环境操作的，比如memObj，则还是把其的数据结构融入到其的上级吧。
+
+分层后，不要去抽象，去继承，尤其不同的层次中的内容，不可取抽象出来且继承了。是的。
+
+对于md5文件的读写。只是需要返回一个Md5对象即可了。需要的时候读写就可以了。是的。
+
+因为有了路径，就是有了数据了。或者是句柄，可以重新打开了。
+
+如何设计出来更好的逻辑来？关于md5和st的关系？
+
+w完善新的ast，dst，cst，fst，lst等文件。
+
+views.py 处理和http相关的内容，例如headers，urlpath。code，errorcode 等。把剩余的内容，转发给st层。
+
+编写dst层，其中ast和cst都是继承与其了。是的。
+
+写一个路径url驱动。重写新的API了。比如/file/put,/file/get,/file/copy,/file/move,/file/delete
+
+/dir/put,/dir/get,/dir/head/,/dir/delete就写这两个，就可以了。然后兼容swift的接口了。是的。等于是重写了编swift了？后台，但是没有那些的层了。是的。
+
+v1则为swift的接口了，u1则为ufs的。
+
+proxy，为代理作用。实现各种接口的request的重新分发了。比如说swift的各种功能方式，会重新发送到server上了。是的。完成一些新的功能等。是的。主要是对于swift相关接口的重新分发了。双server的形式了。
+
+写一个新的接口转发，完成swift的object，account，container的各种功能等。那么这个新的ufs就算完成了。
+
+无论所写的代码，丑或者不丑，都是我们的财富了。尽量减少丑的代码，即可了。后续想办法优化。
+
+copy DIR 的方式，就是列出来所有的文件列表了？然后依次创建了？因为使用os.system 太难看了。是的。使用open，或者file还是不错的。
+
+使用shutil模块。 进行文件IO操作。
+
+fst.py
+
+#def st2md5(stObj):
+#    return stObj.getMd5Obj()
+
+#def plxOp(stObj):
+    # stObj.loadAttrs()
+    # stObj.setAttrs()
+    # stObj.getAttrs()
+    # 基于stObj的复杂操作了。
+   
+#def st2mem(stObj):
+    # urlObj包含相关的网络信息，被直接拆解url路径了。生成核心数据。
+    # stObj则包含文件系统的信息，同样会进行拆分了。生成核心数据。
+    # metaObj，则包含文件系统的信息，利用上一层的特征数据，生成metaObj了。
+    # 上一层的数据，会包含下层数据的钥匙。然后进入下层后进行转换了
+    # 因此，每层其的数据，对于自己的不感兴趣，比如说md5.对于urlObj，stObj，memObj，都没有意义，只是一般的属性而已了。但是对于
+    # md5Obj就不同了，所以md5层处于md5层了。是的。
+    # md5层类，则附带有改层的信息了。是的。
+    # return FMem(stObj.subject)
+
+
+#def getStAttr(stObj):
+    # memObj = st2mem(stObj)
+    
+    # return getData(memObj)
+
+#def setStAttr(stObj,attrs):
+
+    # memObj = st2mem(stObj)
+
+    # attrs -> data
+    # data = attrs2data
+    # setData(memObj,data)    
+    # data = getData(memObj)
+    # attrs = data2attrs(data)
+
+    # stObj.write(attrs)
+
+# 陷入在了设计哲学中了。关于md5自身还带有meta？和实际的数据么？以及meta的读取如何？现在在st层上遇到问题了。是的。太过于复杂了。
+
+# attrs 应该是md5所有的。这个之中，出现概念混乱了。st，是用户视图的。包括，meta和md5两层的内容。
+
+# 底层好了，比如说md5ok了，那么上层就好了。是的。
+
+# md5文件数据存在，那么文件才能存在了。否则不能存在。是的。
+
+# FSt 类之对外提供事实，由上层业务进行判断了。
+
+# 以'' 字符串生成的md5 不存在。exists为false
+
+# 在stObj 和 md5Obj的关系中，需要md5Obj时，重新生成即可了。因为其的md5值是可能发生变化的。是的。
+
+# 文件的判断，主要是md5了，md5文件在，则文件在，md5文件不在，则文件不在。meta为辅助，不重要。
+
+# 关于dst，和lst，是如何使用的了？
+
+# 前提一定是文件存在了。但是不能在setAttrs 函数中判断了。不判断业务，只执行。类中的函数，不需要思考。
+
+dst.py
+
+# DSt 类完全是文件系统级别上的任务了。文件读取，属性读取等。
+
+# url 层的req的处理。然后转化为了实际的dir对象了。文件系统对象来处理了。但是dst要稍微复杂点，所以层次会多了。是的。
+
+# 从网络对象，转化为文件对象了。但是还是要管理很多的fst对象的？是的。以及目录下有目录，这些又该如何设计？更好？
+
+# 这个就是文件系统的能力，和抽象层次的能力的区别了。是的。 #　这个时候就是管理对象的问题了。干脆就是完全的直接文件系统解析吧。而绕过业务了。结果直接从文件系统中获取了。把矛盾留给文件系统级别来解决了。
+
+# 从文件系统级别来返回错误码了，不可让高层的业务伸手进入文件系统级别了。等于是这样的，即我们把高层次的矛盾，通过接口，交给了低层次，但是高层次不对底层解决问题的方式有太多的干涉了。
+
+# 如何对于底层的内容给出一个合理的封装？ g给出初始化的参数了？就可以了？然后就不要干涉了。比如说path是进入fs的方式了。是的。
+
+class FSt:
+    def __ini__(self,subject):
+        self.subject = subject
+        self.prefix = '/mnt/storage/'
+
+    def getPath():
+        return self.subject+self.prefix
+
+    def initSt():
+        # 采集文件系统级别的数据，用户，大小。chmod，权限等。
+        pass
+        
+def st2mem(stObj):
+    '''
+    # urlObj包含相关的网络信息，被直接拆解url路径了。生成核心数据。
+    # stObj则包含文件系统的信息，同样会进行拆分了。生成核心数据。
+    # metaObj，则包含文件系统的信息，利用上一层的特征数据，生成metaObj了。
+    # 上一层的数据，会包含下层数据的钥匙。然后进入下层后进行转换了
+    # 因此，每层其的数据，对于自己的不感兴趣，比如说md5.对于urlObj，stObj，memObj，都没有意义，只是一般的属性而已了。但是对于
+    # md5Obj就不同了，所以md5层处于md5层了。是的。
+    # md5层类，则附带有改层的信息了。是的。
+    '''
+
+    return FMem(stObj.subject)
+
+
+def getStAttr(stObj):
+    memObj = st2mem(stObj)
+    return getData(memObj)
+    
+    
+class Sets:
+
+    def __init__(self):
+        self.metadata = {}
+        ## path , md5 会被作为metadata存储？？？
+#        self.path = ''
+#        self.md5 = ''
+    def setMeta(self,key,value):
+        self.metadata({key:value})
+
+    def getMeta(self,key)
+        return self.metadata.get(key)
+
+关于listdir返回值的问题。 返回值类型不统一。因此，可以这样搞。把返回true/false 的方式在外判断，函数内不进行判断了。
+
+# 关于container的属性的问题。为每个container创建container.meta  文件。在account，只允许创建目录，不允许创建文件了。是的。同理，只允许在文件访问的时候，修改quota了。
+#
+# 比如说修改文件成功后，发送新的container/quota/set ,重新获取目录的大小了。或者文件的大小了。
+#
+# 感觉写的这个ufs，真几把无聊了。还是写点有意思的吧。因为全是类型一样的？不用怎么动脑子了？是的。
+#
+增加对于swift的支持了。善小而为之。是的。
+
+
+
+因为是post，所以get的时候，有body。但是head的时候，是没有body。之前的head，是由post的方式进行的。而get，自然会获取到body的。是的。但是因为客户端是head，所以不会get到body的。因此。只能以head额方式来获取了。是的。
+所以，就有点蛋疼了。

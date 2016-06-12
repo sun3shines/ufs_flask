@@ -1,0 +1,411 @@
+http://www.pythondoc.com/
+
+flask mega tutorial
+
+flask-cache
+
+flask-pymongo
+
+flask-dashed
+
+flask-celery
+
+市场需求为导向了。是的。
+
+曾经深恶痛绝的，web，现在竟然是咱们的救命稻草了。是啊。
+
+一句话，市场化运作，市场导向了。是的啊。
+
+招聘导向了。是的啊。
+
+
+centos7 命令
+
+1 yum -y install epel-release
+
+2 yum install python-virtualenv
+
+3 pip install virtualenv
+
+4 virtualenv flask
+
+5
+flask/bin/pip install flask
+flask/bin/pip install flask-login
+flask/bin/pip install flask-openid
+flask/bin/pip install flask-mail
+flask/bin/pip install flask-sqlalchemy
+flask/bin/pip install sqlalchemy-migrate
+flask/bin/pip install flask-whooshalchemy
+flask/bin/pip install flask-wtf
+flask/bin/pip install flask-babel
+flask/bin/pip install guess_language
+flask/bin/pip install flipflop
+flask/bin/pip install coverage
+
+https://www.douban.com/group/topic/27862335/
+
+招聘导向了。是的啊。
+
+./run.py
+http://localhost:5000
+
+
+
+
+你可以到这里下载代码：microblog-0.1.zip
+
+你可以下载 microblog-0.2.zip
+
+你可以下载 microblog-0.3.zip
+
+chmod a+x script.py
+./db_create.py
+
+./db_migrate.py
+
+./db_migrate.py
+你可以下载 microblog-0.4.zip
+
+你可以下载 microblog-0.5.zip
+
+./db_migrate.py
+你可以下载 microblog-0.6.zip
+rm app.db
+./db_create.py
+python tests.py
+
+python -m smtpd -n -c DebuggingServer localhost:25
+你可以下载 microblog-0.7.zip
+
+你可以下载 microblog-0.8.zip。
+
+你可以下载 microblog-0.9.zip。
+
+你可以下载 microblog-0.10.zip
+
+你可以下载 microblog-0.11.zip。
+
+你可以下载 microblog-0.12.zip
+
+你可以下载 microblog-0.13.zip
+
+你可以下载 microblog-0.14.zip
+
+	每一次修改数据库，我们都需要做一次迁移
+
+	./db_migrate.py
+
+你可以下载 microblog-0.15.zip
+
+	在生产模式下运行我们的应用程序
+	./runp.py
+
+
+6
+source ./bin/activate
+
+flask流程
+
+ return render_template('404.html'), 404
+(Pdb) bt
+  /usr/lib64/python2.7/threading.py(784)__bootstrap()
+-> self.__bootstrap_inner()
+  /usr/lib64/python2.7/threading.py(811)__bootstrap_inner()
+-> self.run()
+  /usr/lib64/python2.7/threading.py(764)run()
+-> self.__target(*self.__args, **self.__kwargs)
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(659)inner()
+-> srv.serve_forever()
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(499)serve_forever()
+-> HTTPServer.serve_forever(self)
+  /usr/lib64/python2.7/SocketServer.py(238)serve_forever()
+-> self._handle_request_noblock()
+  /usr/lib64/python2.7/SocketServer.py(295)_handle_request_noblock()
+-> self.process_request(request, client_address)
+  /usr/lib64/python2.7/SocketServer.py(321)process_request()
+-> self.finish_request(request, client_address)
+  /usr/lib64/python2.7/SocketServer.py(334)finish_request()
+-> self.RequestHandlerClass(request, client_address, self)
+  /usr/lib64/python2.7/SocketServer.py(649)__init__()
+-> self.handle()
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(216)handle()
+-> rv = BaseHTTPRequestHandler.handle(self)
+  /usr/lib64/python2.7/BaseHTTPServer.py(340)handle()
+-> self.handle_one_request()
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(251)handle_one_request()
+-> return self.run_wsgi()
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(193)run_wsgi()
+-> execute(self.server.app)
+  /root/flask/lib/python2.7/site-packages/werkzeug/serving.py(183)execute()
+-> for data in application_iter:
+  /root/flask/lib/python2.7/site-packages/werkzeug/debug/__init__.py(284)debug_application()
+-> app_iter = self.app(environ, start_response)
+  /root/flask/lib/python2.7/site-packages/flask/app.py(2000)__call__()
+-> return self.wsgi_app(environ, start_response)
+  /root/flask/lib/python2.7/site-packages/flask/app.py(1988)wsgi_app()
+-> response = self.full_dispatch_request()
+  /root/flask/lib/python2.7/site-packages/flask/app.py(1641)full_dispatch_request()
+-> rv = self.handle_user_exception(e)
+  /root/flask/lib/python2.7/site-packages/flask/app.py(1539)handle_user_exception()
+-> return self.handle_http_exception(e)
+  /root/flask/lib/python2.7/site-packages/flask/app.py(1498)handle_http_exception()
+-> return handler(e)
+> /root/app/views.py(42)internal_error()
+-> return render_template('404.html'), 404
+
+werkzeug 和 flask app
+
+
+Map([<Rule '/translate' (POST, OPTIONS) -> translate>,
+ <Rule '/logout' (HEAD, OPTIONS, GET) -> logout>,
+ <Rule '/search' (POST, OPTIONS) -> search>,
+ <Rule '/index' (HEAD, POST, OPTIONS, GET) -> index>,
+ <Rule '/login' (HEAD, POST, OPTIONS, GET) -> login>,
+ <Rule '/edit' (HEAD, POST, OPTIONS, GET) -> edit>,
+ <Rule '/' (HEAD, POST, OPTIONS, GET) -> index>,
+ <Rule '/user/<nickname>/<page>' (HEAD, OPTIONS, GET) -> user>,
+ <Rule '/search_results/<query>' (HEAD, OPTIONS, GET) -> search_results>,
+ <Rule '/unfollow/<nickname>' (HEAD, OPTIONS, GET) -> unfollow>,
+ <Rule '/delete/<id>' (HEAD, OPTIONS, GET) -> delete>,
+ <Rule '/follow/<nickname>' (HEAD, OPTIONS, GET) -> follow>,
+ <Rule '/static/<filename>' (HEAD, OPTIONS, GET) -> static>,
+ <Rule '/index/<page>' (HEAD, POST, OPTIONS, GET) -> index>,
+ <Rule '/user/<nickname>' (HEAD, OPTIONS, GET) -> user>])
+
+
+1512 	        path = u'%s|%s' % (
+1513 ->	            self.map.host_matching and self.server_name orself.subdomain,
+1514 	            path_info and '/%s' % path_info.lstrip('/')
+1515 	        )
+1516 	
+
+
+path u'<invalid>|/' 出错了。
+
+
+1561 	        if have_match_for:
+1562 	            raise MethodNotAllowed(valid_methods=list(have_match_for))
+1563 ->	        raise NotFound()
+
+
+无效路径的问题了。
+
+
+map 的初始化？？ host_matching
+
+flask的版本太高了？增加了很多的参数了？有可能啊。
+
+class Flask(_PackageBoundObject)
+
+self.url_map = Map()
+
+self.subdomain 为何为 invalid ？ self.map.host_matching and self.server_name
+则为server_name 了。
+
+想学习那个，就研究那个了。是的啊。
+
+    def match_request(self):
+        """Can be overridden by a subclass to hook into the matching
+        of the request.
+        """
+        try:
+            url_rule, self.request.view_args = \
+                self.url_adapter.match(return_rule=True)
+            self.request.url_rule = url_rule
+        except HTTPException as e:
+            self.request.routing_exception = e
+
+
+可以把openid，换成百度，或者微信，或者微薄的帐号了。
+
+可以熟练使用模板，进行web开发了。是的啊。
+
+既，在js项目和模板项目之间，进行来回切换了。才能说熟悉django和flask框架了。前端，和后端，确实是一点都不好做啊，我日了。
+
+面向市场编程，而不是面向个人爱好编程了。
+
+学习网络，PHP开发，虽然自己不喜欢，但是呢，别人喜欢了。是啊。我日。男怕入错行，我就入错行了。
+
+下一步，研究微信openid了。涉足到一个领域，等于我们了解了这个领域了，也是我们的资本了。是的啊。
+
+需要掌握微信 公众平台开发了。是啊。
+
+形式比人强。形势。
+
+了解 views.py 中各个函数的流程。以及屏蔽掉login的openid，采用自定义的方式了。
+
+了解views.py 中的修饰符的作用了。是的啊。
+
+浩浩荡荡的加入了前端大军了。但是区别是什么。不以其为理想，而以其为资历了。这个就是事业和资本的区别了。
+
+不以其为理想，而以其为资历了。是的啊。
+
+大家都是不在奋斗，唯一的区别在于，一个是把其当理想，为其所用，一个是把其当作资历了，为我所用。
+
+以其为资质，和以其为目的，可以让我们懂得什么是适可而止了，是的啊。
+
+@app.route('/search', methods = ['POST'])
+@login_required
+
+用法还是挺牛逼额，增加到了全局变量的处理中去了，我们可以这样进行尝试了。
+
+应该是作为比包来处理的，生成函数了。是的。在生成函数的过程中，添加了闭包了。并访问了全局变量了。
+
+返回修饰符的即为闭包了，会在函数调用前执行了，而修饰符返回函数，则会在函数执行的时候调用了。
+
+以其为资历，不以其为理想了，是的。
+
+看来我只能来伪造session了。
+
+openid_complete 设置这个参数了？是的啊。 -> get_success_url -> loginhandler
+
+解决掉模拟登录的问题先，是啊。
+
+login 的返回值，在after_login 中被使用了。是的啊。
+
+resp.nickname ,resp.email
+
+研究try_login ，完善response的构建了。是的啊。
+
+直接返回response，是空的。需要进行redirect操作了。是的啊。
+
+redirect 的时候，需要进行赋值location了。本质还是response了，但是是有值的。
+
+可以修改try_login 函数了。是的啊。
+
+目前只能检测目标和最终了。是的啊。
+
+检测下after_login 来 伪造try_login 了。是的。
+
+恐怕还需要我们修改loginhandler 了。
+
+等等，我可以不搞网页服务器，而是把我现有的项目，通通改成flask，和tornado，twist
+和django了。是的啊。这个吊了。
+
+flask，restful 服务器
+
+http://www.cnblogs.com/vovlie/p/4178077.html
+
+http://www.linuxidc.com/Linux/2013-09/90473.htm
+
+把现有的项目，通通改造为flask，等web框架了。是的啊。
+
+顺便用一把django了。是的啊。
+
+先写一个简单的心跳函数了。就是利用现有的api了。而不是我们的paste.deploy
+那么复杂了。是的啊。
+
+好象是简单多了。是啊。
+
+牛逼，我日。而且，还不用自己去搞分发。直接使用nginx就可以了。是的啊。
+
+http://www.cnblogs.com/vovlie/p/4178077.html
+
+对于flask和tornado，和django来说，其的教程和浏览器的区别，在于其是否需要自定义客户端呢？是啊。
+
+需要我们多多使用全局变量，来进行cookie和session了。是的啊。
+
+把参数模式，改为 post的方式了。以及其他的方式了。是的啊。
+
+restful和 db_cloumn 的方式了。是的啊。
+
+爽啊，现在。
+
+把两个项目该下，然后改两个小网站了？还是说先撤为敬了？需要光环，是啊。
+
+所以呢，就是说先撤了。是的啊。
+
+按理说，还是需要把框架给熟悉一遍了。是的啊。
+
+把文档中的每个原理，的源码都是需要读一遍的了。是的啊。
+
+以及，改造完项目，就完了。是的啊。
+
+研究下tornado，和flask了。是的啊。
+
+多进程的方式下，就不能使用全局变量了。是的，因为并发进程间，是无法共享的了。
+
+flask项目整理了。
+
+在eclipse下如何使用？？
+
+centos7
+yum install python-flask.noarch  python2-flask-multistatic.noarch python-flask-xml-rpc.noarch python-flask-wtf.noarch python-flask-whooshalchemy.noarch python-flask-sqlalchemy.noarch python-flask-rstpages.noarch python-flask-openid.noarch python-flask-mako.noarch python-flask-cache.noarch python-flask-babel.noarch python-flask-admin.noarch
+
+
+cat test  | awk -F : '{print $1}'
+
+yum install python-flask-assets.noarch  python-flask-doc.noarch  python-flask-lastuser.noarch  python-flask-login.noarch  python-flask-mako.noarch  python-flask-oauth.noarch  python-flask-openid.noarch  python-flask-principal.noarch python-flask-rstpages.noarch python-flask-sqlalchemy.noarch python-flask-wtf.noarch python-sphinx-theme-flask.noarch python-flask.noarch 
+
+关于flask中对于response的处理
+
+如果返回的是response的类型，那么直接强制force_type 了
+如果是数据，那么 make_response，一般不指定headers和status
+
+所以，决定自己来构造response了。
+
+make_reponse 后，会执行after_request 了。
+
+
+下一步，是关于request的处理了。如何获取相关的参数的。
+
+
+        with self.request_context(environ):
+            try:
+                response = self.full_dispatch_request()
+            except Exception, e:
+                response = self.make_response(self.handle_exception(e))
+            return response(environ, start_response)
+直接生成了，request了。
+
+class RequestContext(object):
+
+    def __init__(self, app, environ):
+        self.app = app
+        self.request = app.request_class(environ)
+        self.url_adapter = app.create_url_adapter(self.request)
+        self.g = app.request_globals_class()
+        self.flashes = None
+        self.session = None
+
+requestContext 负责生成request了。
+
+match_request 负责为request进行相关的赋值了。
+
+如何访问flask的request和以及如何生成response了。
+
+
+访问request变量，需要flask.request 
+
+_request_ctx_stack = LocalStack()
+_app_ctx_stack = LocalStack()
+current_app = LocalProxy(_find_app)
+request = LocalProxy(partial(_lookup_object, 'request'))
+session = LocalProxy(partial(_lookup_object, 'session'))
+g = LocalProxy(partial(_lookup_object, 'g'))
+
+如何理解？
+
+_request_ctx_stack
+_app_ctx_stack
+
+LocalStack , LocalProxy ??
+
+先处理account函数了。
+
+区别在哪里？
+
+Request 的 body，改为data
+
+Response的body 改为 response
+
+response（app_iter = app_iter,request=req） 改为 response(response=app_iter)
+
+了解 flask 的request 和response的过程了。是的啊。
+
+关于request的处理，path，body，headers，GET
+
+关于 response的处理，status，app_iter 等。是的啊。
+
+
