@@ -15,7 +15,7 @@ class Meta:
             json.dump(attrs,f) 
 
     def get(self):
-        with open(self.path) as f:
+        with open(self.path,'r') as f:
             attrs = json.load(f)
             return attrs
 

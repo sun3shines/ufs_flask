@@ -1,1 +1,1 @@
-from ufs.myflask.globalx import app as application
+from ufs.myflask.app import app as application

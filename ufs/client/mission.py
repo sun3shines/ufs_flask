@@ -66,13 +66,13 @@ class Mission:
         finally:
             self.close()
  
-def getMission():
+def getMission(host,port):
 
-    return Mission(host='127.0.0.1',port=7090)
+    return Mission(host=host,port=port)
 
-def execute(t):
+def execute(t,host='127.0.0.1',port=7090):
     
-    with getMission() as m:
+    with getMission(host,port) as m:
         m.http(t)
     
     return t 

@@ -7,6 +7,8 @@
 
 url2view = {}
 
+strHello = '/'
+
 strFilePut = '/file/put'
 # url2view.update({strFilePut:ufs.interface.fviews.put})
 
